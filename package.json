@@ -1,0 +1,28 @@
+{
+  "name": "starry-time",
+  "version": "1.0.0",
+  "description": "customizable adventure app featuring multiple paths and endings",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cecileceng/Starry-Time.git"
+  },
+  "author": "Cecile Nguyen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cecileceng/Starry-Time/issues"
+  },
+  "homepage": "https://github.com/cecileceng/Starry-Time#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.10",
+    "mongoose": "^4.6.1",
+    "pryjs": "^1.0.2"
+  }
+}

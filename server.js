@@ -7,10 +7,6 @@ var logger = require("morgan");
 var pry = require("pryjs");
 // eval(pry.it)
 
-//REQUIRED SCHEMAS
-var Story = require("./server/model.js");
-var User = require("./server/model.js");
-
 //EXPRESS INSTANCE
 var app = express();
 var PORT = process.env.PORT || 3000; //Sets an initial port
@@ -41,15 +37,49 @@ db.once("open", function() {
 
 mongoose.connect("mongodb://" + DB_USER + ":" + DB_PASS + "@" + DB_PATH);
 
-//MAIN ROUTE
+//MAIN ROUTE? (PULLING THINGS FROM DB)
 app.get("/", function(req,res) {
 	res.sendFile('./public/index.html');
 })
 
-// //ROUTE TO ADD FILL-INS (Nouns/Verbs/Adjectives?)
-// app.post()
+//ROUTE TO LOGIN (PUTTING THINGS INTO THE DB) PHASE 2 ITEM
 
-// //ROUTE TO LOGIN
+//MODEL
+var Schema = mongoose.Schema;
+
+var StorySchema = new Schema({
+	storyBook: {
+		type: String,
+	},
+	position: {
+		type: String,
+	},
+	chapterText: {
+		type: String,
+	},
+	optionA: {
+		type: String,
+	},
+	pathA: {
+		type: Number, // This will be an index?
+	},
+	optionB: {
+		type: String,
+	},
+	pathB: {
+		type: Number, // ? 
+	},
+	blank: {
+		type: String, //noun verb adjective
+		value: String, //their answer
+	},
+	treePic: {
+		type: String, // How to reference image? Can be if statement on Tree?
+	}
+})
+
+var Story = mongoose.model("Story", StorySchema);
+module.exports = Story;
 
 //LISTENER
 app.listen(PORT, function() {

@@ -3,8 +3,14 @@ import React from 'react';
 const StoryBlock = ({}) => {
 	return (
 		<div className='story-block'>
-			<CurrentChapter />
-			<Tree />
+			<div className='row'>
+				<div className='col-md-6 left-side'>
+					<CurrentChapter />
+				</div>
+				<div className='col-md-6 right-side'>
+					<Tree />
+				</div>
+			</div>
 		</div>
 	);
 };

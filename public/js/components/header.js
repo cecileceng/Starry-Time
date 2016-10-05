@@ -3,12 +3,10 @@ import React from 'react';
 const Header = ({}) => {
 	return (
 		<div className='header'>
-			<p>Starry Time</p>
-			<h4>You're the STAR of Your Story!</h4>
+			<h1>Starry Time</h1>
+			<h3>You're the STAR of Your Story!</h3>
 		</div>
 	);
 };
 
 export default Header;
-
-//does header const need function

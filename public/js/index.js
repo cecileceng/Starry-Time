@@ -1,30 +1,44 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import MainContainer from './component/main-container';
+// import MainContainer from './component/main-container';
 import Header from './components/header';
 import Body from './components/body';
-import StartBlock from './components/start-block';
-import FillIns from './components/fill-ins';
-import WordInput from './components/word-input';
-import Form from './components/form';
-import StoryBlock from './components/stock-block';
-import Tree from './components/tree';
-import CurrentChapter from './components/current-chapter';
 import Footer from './components/footer';
-import App from './app/app';
+//import Style from './components/style';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isBeginning: false
+			isBeginning: false,
+			chooseStory: false,
+			storyStarted: false,
+			storyInfo: null,
+			whereAmI: null,
 		};
 	};
+	chooseStory () {
+		this.setState({chooseStory: true})
+	}
+	populateStory (res) {
+		this.setState({storyInfo: res}) // Tells me which story to query the DB
+	}
+	readStory (res) {
+		this.setState({storyStarted: true}) // Shows the story
+	}
+	whereAmI () {
+		this.setState({tree: res})
+	}
 	render() {
 		return (
-			<MainContainer />
+			<div className='main-container'>
+				<Header />
+				<Body  {...this.state} //takes in all of App object
+					chooseStoryFn={this.chooseStory.bind(this)}/>
+				<Footer />
+			</div>
 		);
 	};
 }
 
-ReactDOM.render(<App />, document.querySelector('.main-container'))
+ReactDOM.render(<App />, document.querySelector('#app'))

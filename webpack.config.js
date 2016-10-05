@@ -1,5 +1,5 @@
 module.exports = {
-	entry: "./app/App.js", //This code will be compiled
+	entry: "./public/js/index.js", //This code will be compiled
 	output: {
 		filename: "public/bundle.js" //Then output into this file
 	},

@@ -4,6 +4,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var logger = require("morgan");
+var jquery = require("jquery");
 var pry = require("pryjs");
 // eval(pry.it)
 
@@ -37,17 +38,29 @@ db.once("open", function() {
 
 mongoose.connect("mongodb://" + DB_USER + ":" + DB_PASS + "@" + DB_PATH);
 
-//MAIN ROUTE? (PULLING THINGS FROM DB)
+//MAIN ROUTE TO DISPLAY HTML
 app.get("/", function(req,res) {
 	res.sendFile('./public/index.html');
 })
 
-//ROUTE TO LOGIN (PUTTING THINGS INTO THE DB) PHASE 2 ITEM
+//ROUTE TO PULL INFO FROM DB?
+
+//ROUTE TO POPULATE BLANKS
+app.get("/blanks", function(req, res) {
+	console.log(req.query)
+	var obj = {foo: 'bar'};
+	res.send(JSON.stringify(obj));
+})
+
+//ROUTE TO LOGIN (PUTTING THINGS INTO THE DB) PHASE 2
 
 //MODEL
 var Schema = mongoose.Schema;
 
 var StorySchema = new Schema({
+	id: {
+		type: Number,
+	},
 	storyBook: {
 		type: String,
 	},

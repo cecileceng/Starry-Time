@@ -1,14 +1,14 @@
 import React from 'react';
 
-const CurrentChapter = ({}) => {
+const CurrentChapter = (props) => {
 	return (
 		<div className='current-chapter'>
-			{this.state.chapterText}
+			{props.chapterText}
 		</div>
 		<div className='options'>
-			{this.state.optionA}
+			{props.optionA}
 			<br />
-			{this.state.optionB}
+			{props.optionB}
 		</div>
 	);
 };

@@ -6,12 +6,12 @@
 	text-align: center;
 }
 
-.header p{
+.header h1 {
 	font-family: 'Pacifico', cursive;
 	font-size: 72px;
 }
 
-.header h4 {
+.header h3 {
 	font-family: 'Architects Daughter', cursive;
 }
 
@@ -31,6 +31,10 @@
 
 }
 
+.open-page {
+	
+}
+
 .story-block {
 
 }
@@ -40,13 +44,13 @@
 }
 
 .tree {
-
+	vertical-align: center;
 }
 
 .left-side {
-
+	vertical-align: right;
 }
 
 .right-side {
-
+	vertical-align: left;
 }

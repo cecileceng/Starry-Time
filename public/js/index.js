@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-// import MainContainer from './component/main-container';
 import Header from './components/header';
 import Body from './components/body';
 import Footer from './components/footer';
-//import Style from './components/style';
 
 class App extends Component {
 	constructor(props) {
@@ -18,10 +16,10 @@ class App extends Component {
 		};
 	};
 	chooseStory () {
-		this.setState({chooseStory: true})
+		this.setState({chooseStory: true}) //
 	}
 	populateStory (res) {
-		this.setState({storyInfo: res}) // Tells me which story to query the DB
+		this.setState({storyInfo: res, isBeginning: true}) // Tells me which story to query the DB
 	}
 	readStory (res) {
 		this.setState({storyStarted: true}) // Shows the story
@@ -34,7 +32,9 @@ class App extends Component {
 			<div className='main-container'>
 				<Header />
 				<Body  {...this.state} //takes in all of App object
-					chooseStoryFn={this.chooseStory.bind(this)}/>
+					chooseStoryFn={this.chooseStory.bind(this)}
+					populateStory={this.populateStory.bind(this)}
+				/>
 				<Footer />
 			</div>
 		);

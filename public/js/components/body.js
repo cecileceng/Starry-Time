@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
 import StartBlock from './start-block';
 import OpenPage from './open-page';
-// import FillIns from './fill-ins';
-// import WordInput from './word-input';
-// import Form from './form';
-// import StoryBlock from './stock-block';
+import FillIns from './fill-ins';
+import StoryBlock from './story-block';
 // import Tree from './tree';
 // import CurrentChapter from './current-chapter';
 
 const Body = (props) => {
 	var myBody;
-	//render() {   this is being rendered in the index.js right?
-	if (props.isBeginning) { //false/true declaration?
+	console.log(props.storyInfo)
+	if (props.isBeginning) {
 		myBody = 
-			<FillIns /> // Part 2
-	} else if(props.storyStarted) {
+			<FillIns /> // Part 2: Fill in your words readStory={props.readStory}
+	} else if (props.storyStarted) {
 		myBody = 
-			<StoryBlock /> // Part 3
+			<StoryBlock /> // Part 3: Read through the story
 	} else {
 		if (props.chooseStory) {
 			myBody =
-			<StartBlock chooseStory={props.chooseStory} chooseStoryFn={props.chooseStoryFn} /> // Pick Story
+			<StartBlock populateStory={props.populateStory} /> // Part 1: Pick a Story
 		} else {
 			myBody =
-			<OpenPage chooseStory={props.chooseStory} chooseStoryFn={props.chooseStoryFn} /> // Default
+			<OpenPage chooseStory={props.chooseStory} chooseStoryFn={props.chooseStoryFn} /> // Default: Starting page
 		}
 	}
 	return (
@@ -35,4 +33,4 @@ const Body = (props) => {
 
 export default Body;
 
-//dummy components are just for functions
+//Special note: dummy components are just for functions and don't require render()

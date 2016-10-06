@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
-const selectStory = (storyBook) => {
-	$.get('/blanks?storybook='+ storyBook, function(data, props) {
-		console.log(data); //after this call, make a function props.populateStory and pass it the data look at how we called chooseStoryFn
+const selectStory = (storyBook, props) => {
+	$.get('/blanks?storybook='+ storyBook, function(data) {
+		var myData = JSON.parse(data);
+		props.populateStory(myData);
+		//console.log(myData);  gives back array of objects
 	});
 }
 const StartBlock = (props) => {
@@ -17,7 +19,7 @@ const StartBlock = (props) => {
 					<h3>Start Your Adventure</h3>
 					<h4>Select your story book</h4>
 					<ul>
-						<li><img src='../images/radiant-forest-book-cover.jpg' alt='The Radiant Forest Story' onClick={selectStory('Radiant-Forest', props)} /></li> 
+						<li><img src='../images/radiant-forest-book-cover.jpg' alt='The Radiant Forest Story' onClick={selectStory.bind(this, 'Radiant-Forest', props)} /></li> 
 						<li><img src='../images/placeholder-book-cover.jpg' alt='Coming Soon' /></li>
 					</ul>
 				</div>
@@ -28,4 +30,4 @@ const StartBlock = (props) => {
 
 export default StartBlock;
 
-//need to find way on line 13 to point to database story
+//need to find way to point to database story

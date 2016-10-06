@@ -12,11 +12,13 @@
 }
 
 .header h3 {
+	text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F, 0 0 0.2em #87F;
 	font-family: 'Architects Daughter', cursive;
 }
 
 .footer {
 	text-align: center;
+	font-family: 'Architects Daughter', cursive;
 }
 
 .start-block {
@@ -41,6 +43,10 @@
 
 .current-chapter {
 
+}
+
+.storytime {
+	font-family: 'The Girl Next Door', cursive;
 }
 
 .tree {

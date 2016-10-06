@@ -8,7 +8,7 @@ const OpenPage = (props) => {
 					<img src='../images/protagonist-girl.jpg' alt='Starry Time Protagonist' />
 				</div>
 				<div className='col-md-6 right-side'>
-					<button onClick={props.chooseStoryFn}>Start Your Adventure</button>
+					<button className='btn btn-warning btn-lg' onClick={props.chooseStoryFn}>Start Your Adventure</button>
 				</div>
 			</div>
 		</div>

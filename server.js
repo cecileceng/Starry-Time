@@ -33,6 +33,11 @@ db.on("error", function(err) {
 });
 
 db.once("open", function() {
+	db.collection('radiant_forest', function(err, collection) {
+		if (err) {
+			console.log(err);
+		};
+	});
 	console.log("Mongoose connection successful.");
 });
 
@@ -41,15 +46,6 @@ mongoose.connect("mongodb://" + DB_USER + ":" + DB_PASS + "@" + DB_PATH);
 //MAIN ROUTE TO DISPLAY HTML
 app.get("/", function(req,res) {
 	res.sendFile('./public/index.html');
-})
-
-//ROUTE TO PULL INFO FROM DB?
-
-//ROUTE TO POPULATE BLANKS
-app.get("/blanks", function(req, res) {
-	console.log(req.query)
-	var obj = {foo: 'bar'};
-	res.send(JSON.stringify(obj));
 })
 
 //ROUTE TO LOGIN (PUTTING THINGS INTO THE DB) PHASE 2
@@ -74,13 +70,13 @@ var StorySchema = new Schema({
 		type: String,
 	},
 	pathA: {
-		type: Number, // This will be an index?
+		type: String, 
 	},
 	optionB: {
 		type: String,
 	},
 	pathB: {
-		type: Number, // ? 
+		type: String, // ? 
 	},
 	blank: {
 		type: String, //noun verb adjective
@@ -93,6 +89,20 @@ var StorySchema = new Schema({
 
 var Story = mongoose.model("Story", StorySchema);
 module.exports = Story;
+
+function find (collec, query, callback) {
+	mongoose.connection.db.collection(collec, function (err, collection) {
+	collection.find(query).toArray(callback);
+	});
+}
+
+//ROUTE TO POPULATE BLANKS
+app.get("/blanks", function(req, res) {
+	find("radiant_forest", {}, function(err, storyBits) {
+		console.log(storyBits);
+		res.send(JSON.stringify(storyBits));
+	});
+})
 
 //LISTENER
 app.listen(PORT, function() {

@@ -77,10 +77,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import MainContainer from './component/main-container';
-
-
-	//import Style from './components/style';
 
 	var App = function (_Component) {
 		_inherits(App, _Component);
@@ -103,12 +99,12 @@
 		_createClass(App, [{
 			key: 'chooseStory',
 			value: function chooseStory() {
-				this.setState({ chooseStory: true });
+				this.setState({ chooseStory: true }); //
 			}
 		}, {
 			key: 'populateStory',
 			value: function populateStory(res) {
-				this.setState({ storyInfo: res }); // Tells me which story to query the DB
+				this.setState({ storyInfo: res, isBeginning: true }); // Tells me which story to query the DB
 			}
 		}, {
 			key: 'readStory',
@@ -128,7 +124,9 @@
 					{ className: 'main-container' },
 					_react2.default.createElement(_header2.default, null),
 					_react2.default.createElement(_body2.default, _extends({}, this.state, { //takes in all of App object
-						chooseStoryFn: this.chooseStory.bind(this) })),
+						chooseStoryFn: this.chooseStory.bind(this),
+						populateStory: this.populateStory.bind(this)
+					})),
 					_react2.default.createElement(_footer2.default, null)
 				);
 			}
@@ -21566,28 +21564,31 @@
 
 	var _openPage2 = _interopRequireDefault(_openPage);
 
+	var _fillIns = __webpack_require__(179);
+
+	var _fillIns2 = _interopRequireDefault(_fillIns);
+
+	var _storyBlock = __webpack_require__(182);
+
+	var _storyBlock2 = _interopRequireDefault(_storyBlock);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import FillIns from './fill-ins';
-	// import WordInput from './word-input';
-	// import Form from './form';
-	// import StoryBlock from './stock-block';
 	// import Tree from './tree';
 	// import CurrentChapter from './current-chapter';
 
 	var Body = function Body(props) {
 		var myBody;
-		//render() {   this is being rendered in the index.js right?
+		console.log(props.storyInfo);
 		if (props.isBeginning) {
-			//false/true declaration?
-			myBody = _react2.default.createElement(FillIns, null); // Part 2
+			myBody = _react2.default.createElement(_fillIns2.default, null); // Part 2: Fill in your words readStory={props.readStory}
 		} else if (props.storyStarted) {
-			myBody = _react2.default.createElement(StoryBlock, null); // Part 3
+			myBody = _react2.default.createElement(_storyBlock2.default, null); // Part 3: Read through the story
 		} else {
 			if (props.chooseStory) {
-				myBody = _react2.default.createElement(_startBlock2.default, { chooseStory: props.chooseStory, chooseStoryFn: props.chooseStoryFn }); // Pick Story
+				myBody = _react2.default.createElement(_startBlock2.default, { populateStory: props.populateStory }); // Part 1: Pick a Story
 			} else {
-				myBody = _react2.default.createElement(_openPage2.default, { chooseStory: props.chooseStory, chooseStoryFn: props.chooseStoryFn }); // Default
+				myBody = _react2.default.createElement(_openPage2.default, { chooseStory: props.chooseStory, chooseStoryFn: props.chooseStoryFn }); // Default: Starting page
 			}
 		}
 		return _react2.default.createElement(
@@ -21599,7 +21600,7 @@
 
 	exports.default = Body;
 
-	//dummy components are just for functions
+	//Special note: dummy components are just for functions and don't require render()
 
 /***/ },
 /* 174 */
@@ -21621,9 +21622,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var selectStory = function selectStory(storyBook) {
-		_jquery2.default.get('/blanks?storybook=' + storyBook, function (data, props) {
-			console.log(data); //after this call, make a function props.populateStory and pass it the data look at how we called chooseStoryFn
+	var selectStory = function selectStory(storyBook, props) {
+		_jquery2.default.get('/blanks?storybook=' + storyBook, function (data) {
+			var myData = JSON.parse(data);
+			props.populateStory(myData);
+			//console.log(myData);  gives back array of objects
 		});
 	};
 	var StartBlock = function StartBlock(props) {
@@ -21657,7 +21660,7 @@
 						_react2.default.createElement(
 							'li',
 							null,
-							_react2.default.createElement('img', { src: '../images/radiant-forest-book-cover.jpg', alt: 'The Radiant Forest Story', onClick: selectStory('Radiant-Forest', props) })
+							_react2.default.createElement('img', { src: '../images/radiant-forest-book-cover.jpg', alt: 'The Radiant Forest Story', onClick: selectStory.bind(undefined, 'Radiant-Forest', props) })
 						),
 						_react2.default.createElement(
 							'li',
@@ -21672,7 +21675,7 @@
 
 	exports.default = StartBlock;
 
-	//need to find way on line 13 to point to database story
+	//need to find way to point to database story
 
 /***/ },
 /* 175 */
@@ -31933,7 +31936,7 @@
 					{ className: 'col-md-6 right-side' },
 					_react2.default.createElement(
 						'button',
-						{ onClick: props.chooseStoryFn },
+						{ className: 'btn btn-warning btn-lg', onClick: props.chooseStoryFn },
 						'Start Your Adventure'
 					)
 				)
@@ -31988,6 +31991,204 @@
 	};
 
 	exports.default = Footer;
+
+/***/ },
+/* 178 */,
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _wordInput = __webpack_require__(180);
+
+	var _wordInput2 = _interopRequireDefault(_wordInput);
+
+	var _form = __webpack_require__(181);
+
+	var _form2 = _interopRequireDefault(_form);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// props.storyInfo[0].blank needs be called
+	// sort array of objects in db to be in order and grab the blank from the array and put it on the screen
+	//.map react look up
+
+	var FillIns = function FillIns(_ref) {
+		var props = _ref.props;
+
+		return _react2.default.createElement(
+			'div',
+			{ className: 'fill-ins' },
+			_react2.default.createElement(_wordInput2.default, null),
+			_react2.default.createElement(_form2.default, null)
+		);
+	};
+
+	exports.default = FillIns;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var WordInput = function WordInput() {
+		return _react2.default.createElement(
+			'div',
+			null,
+			_react2.default.createElement(
+				'h1',
+				null,
+				'hi'
+			),
+			_react2.default.createElement(
+				'button',
+				{ className: 'btn btn-warning btn-lg' },
+				'Submit Words'
+			)
+		);
+	};
+
+	exports.default = WordInput;
+	//onClick={readStory.bind(this, '1A', props)}
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Form = function Form() {
+		return _react2.default.createElement(
+			'h1',
+			null,
+			'Form'
+		);
+	};
+
+	// class MyForm extends React.Component {
+	// 	constructor(props) {
+	// 		super(props); 
+	// 		this.state = {value: 'Hello!'};
+	// 		this.handleChange = this.handleChange.bind(this);
+	// 	}
+
+	// 	handleChange(event) {
+	// 		this.setState({value: event.target.value});
+	// 	}
+
+	// 	render() {
+	// 		return (
+	// 			<input
+	// 				type="text"
+	// 				value={this.state.value}
+	// 				onChange={this.handleChange}
+	// 			/>
+	// 		);
+	// 	}
+	// }
+
+	// const Form = ({}) => {
+	// 	return (
+	// 		//use a loop to render multiple word inputs
+	// 		//stuff
+	// 	);
+	// };
+
+	exports.default = Form;
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+	var StoryBlock = function StoryBlock(_ref) {
+		_objectDestructuringEmpty(_ref);
+
+		return _react2.default.createElement(
+			'div',
+			{ className: 'story-block' },
+			_react2.default.createElement(
+				'div',
+				{ className: 'row' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-md-6 left-side storytime' },
+					_react2.default.createElement(CurrentChapter, null),
+					_react2.default.createElement('br', null),
+					'//optionA',
+					_react2.default.createElement('br', null),
+					'//optionB'
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-md-6 right-side' },
+					_react2.default.createElement(Tree, null)
+				)
+			)
+		);
+	};
+	// 	return (
+	// 		<div className='story-block'>
+	// 			<div className='row'>
+	// 				<div className='col-md-7 story-page'>
+	// 					myText={this.state.currentStoryParagraph}
+	// 				</div>
+	// 				<div className='col-md-5 tree-tier'>
+	// 					<img src='../images/starter-tree.jpg' alt='Pick Your Path' />
+	// 				</div>
+	// 			</div>
+	// 		</div>
+	// 	);
+	// };
+
+	exports.default = StoryBlock;
+
+	//line 8 figure out way to input database text? also need to setState
+	//line 11 how to import image from database
+
+	//vs storyblock = <CurrentChapter /> <Tree />
 
 /***/ }
 /******/ ]);

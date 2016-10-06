@@ -1,0 +1,107 @@
+[
+  {
+	"id": "1",
+	"storyBook": "Radiant-Forest",
+	"position": "1A",
+	"chapterText": "On a beautiful October day, you’ve set out to make a delivery for the town’s bakery to an old lady who lives in the forest near your town, <townName>. There are two ways to get through the forest; a straight path which you’ve taken many times before, or a curvy path you’ve never taken, but that you’ve heard has many sights to see along the way.",
+	"optionA": "Take the straight path.",
+	"pathA": "2A",
+	"optionB": "Take the curvy path.",
+	"pathB": "2B", 
+	 "blank": {
+     		 "type": "Name of Town",
+    		  "value": null
+ 	 },
+	"treePic": "./images/starter-tree.jpg"
+  },
+  {
+	"id": "2",
+	"storyBook": "Radiant-Forest",
+	"position": "2A",
+	"chapterText": "It’s the same path through the forest you use every time, but it’s still your favorite. Today’s basket of goodies was filled with cookies, doughnuts and <sweetFood>, and it starts to smell very good...",
+	"optionA": "Eat one of the goodies. Hopefully the old lady doesn’t notice!",
+	"pathA": "3C",
+	"optionB": "Don’t eat the goodies! You have a job to do.",
+	"pathB": "3D", 
+	 "blank": {
+     		 "type": "Something Sweet",
+    		  "value": null
+ 	 },
+	"treePic": "./images/tree-2A.jpg"
+  },
+  {
+	"id": "3",
+	"storyBook": "Radiant-Forest",
+	"position": "2B",
+	"chapterText": "On the winding path, you encounter animals that you’ve ever seen before: <animalsPlural>. They don’t seem to mind you being there, so long as you leave them alone.",
+	"optionA": "Appreciate the animals from afar.",
+	"pathA": "3E",
+	"optionB": "Get closer to the animals.",
+	"pathB": "3F", 
+	 "blank": {
+     		 "type": "Animals (Plural)",
+    		  "value": null
+ 	 },
+	"treePic": "./images/tree-2B.jpg"
+  },
+  {
+	"id": "4",
+	"storyBook": "Radiant-Forest",
+	"position": "3C",
+	"chapterText": "You finally make it to the old lady’s house. The <adjective> lady smiles at you as you approach but then it quickly turns to a frown when she notices all the crumbs around your face. She hands you her payment for the purchase. When you return to the bakery, your boss reads the note that was also enclosed with it. With a frown, your boss says, ‘We should treat customers the way we would like to be treated. I’m disappointed in you. Tomorrow you will apologize to her and make up for it with extra work.’",
+	"optionA": null,
+	"pathA": null,
+	"optionB": null,
+	"pathB": null, 
+	 "blank": {
+     		 "type": "Adjective (a describing word)",
+    		  "value": null
+ 	 },
+	"treePic": "./images/tree-3C.jpg"
+  },
+  {
+	"id": "5",
+	"storyBook": "Radiant-Forest",
+	"position": "3D",
+	"chapterText": "You finally make it to the old lady’s house in the forest. You see children playing outside and they seem excited when they see you. ‘Yippee! Our treats are here. Thank you <yourName>!’ The old lady smiles at you and pays you the money for the delivery. ‘Thank you so much for coming out so far away. Have one of these cookies for your journey home.’ The children have big smiles and you feel very <adjective>.",
+	"optionA": null,
+	"pathA": null,
+	"optionB": null,
+	"pathB": null, 
+	 "blank": {
+    		 "type": "Adjective (a describing word)",
+    		  "value": null
+ 	 },
+	"treePic": "./images/tree-3D.jpg"
+  },
+  {
+	"id": "6",
+	"storyBook": "Radiant-Forest",
+	"position": "3E",
+	"chapterText": "Nature is wondrous to behold. You continue <verbIng> in the forest, happy that you got to enjoy the scenery. After you finish your delivery your journey home is met with a sea of fireflies guiding the way safely.",
+	"optionA": null,
+	"pathA": null,
+	"optionB": null,
+	"pathB": null, 
+	 "blank": {
+     		 "type": "Verb  (an action word) ending in -ing",
+    		  "value": null
+ 	 },
+	"treePic": "./images/tree-3E.jpg"
+  },
+  {
+	"id": "7",
+	"storyBook": "Radiant-Forest",
+	"position": "3F",
+	"chapterText": "You decide that you want to get a little more up close and personal with the animals. A big <animal> in particular doesn’t appreciate you invading his space and gives your hand a big chomp. You drop your basket of treats and the squirrels scurry away with the goods. ",
+	"optionA": null,
+	"pathA": null,
+	"optionB": null,
+	"pathB": null, 
+	 "blank": {
+     		 "type": "Animal",
+    		  "value": null
+ 	 },
+	"treePic": "./images/tree-3F.jpg"
+  }
+]

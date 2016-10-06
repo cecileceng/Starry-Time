@@ -4,8 +4,12 @@ const StoryBlock = ({}) => {
 	return (
 		<div className='story-block'>
 			<div className='row'>
-				<div className='col-md-6 left-side'>
+				<div className='col-md-6 left-side storytime'>
 					<CurrentChapter />
+					<br />
+					//optionA
+					<br />
+					//optionB
 				</div>
 				<div className='col-md-6 right-side'>
 					<Tree />

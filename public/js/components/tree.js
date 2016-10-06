@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery'; //would like to be able to replace the src with db info
 
 const Tree = ({}) => {
 	return (
@@ -9,5 +10,3 @@ const Tree = ({}) => {
 };
 
 export default Tree;
-
-//make database call -- how will it know which chapter?

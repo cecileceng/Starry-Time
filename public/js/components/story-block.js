@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+// import Tree from './tree';
+// import CurrentChapter from './current-chapter';
 
 const StoryBlock = ({}) => {
 	return (

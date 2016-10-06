@@ -91,7 +91,8 @@
 				chooseStory: false,
 				storyStarted: false,
 				storyInfo: null,
-				whereAmI: null
+				whereAmI: null,
+				answers: null
 			};
 			return _this;
 		}
@@ -99,22 +100,34 @@
 		_createClass(App, [{
 			key: 'chooseStory',
 			value: function chooseStory() {
-				this.setState({ chooseStory: true }); //
+				this.setState({ chooseStory: true }); // Pulls up selectable stories in StartBlock
 			}
 		}, {
 			key: 'populateStory',
 			value: function populateStory(res) {
-				this.setState({ storyInfo: res, isBeginning: true }); // Tells me which story to query the DB
+				var answers = {};
+				var chapters = res; // Local variable is res from ...
+				for (var i = 0; i < chapters.length; i++) {
+					var tokens = chapters[i].chapterText.match(/(<\w+>)/g);
+					answers[chapters[i].position] = []; // using chapter key initialize empty array
+					// answers.[](chapters.position) invokes bracket function and passing in chap
+					for (var j = 0; j < tokens.length; j++) {
+						answers[chapters[i].position].push({ type: tokens[j], value: "" }); //will be modified later
+						console.log(answers);
+					}
+				}
+				this.setState({ storyInfo: res, isBeginning: true, answers: answers });
+				console.log(this.state); // Tells which story to query from the database
 			}
 		}, {
 			key: 'readStory',
 			value: function readStory(res) {
-				this.setState({ storyStarted: true }); // Shows the story
+				this.setState({ storyStarted: true }); // Should show the story
 			}
 		}, {
 			key: 'whereAmI',
 			value: function whereAmI() {
-				this.setState({ tree: res });
+				this.setState({ tree: res }); // Should tell us which "position" we're in so we can populate the tree
 			}
 		}, {
 			key: 'render',
@@ -21564,9 +21577,9 @@
 
 	var _openPage2 = _interopRequireDefault(_openPage);
 
-	var _fillIns = __webpack_require__(179);
+	var _form = __webpack_require__(181);
 
-	var _fillIns2 = _interopRequireDefault(_fillIns);
+	var _form2 = _interopRequireDefault(_form);
 
 	var _storyBlock = __webpack_require__(182);
 
@@ -21574,14 +21587,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import Tree from './tree';
-	// import CurrentChapter from './current-chapter';
-
 	var Body = function Body(props) {
 		var myBody;
 		console.log(props.storyInfo);
 		if (props.isBeginning) {
-			myBody = _react2.default.createElement(_fillIns2.default, null); // Part 2: Fill in your words readStory={props.readStory}
+			myBody = _react2.default.createElement(_form2.default, props); // Part 2: Fill in your words readStory={props.readStory}
 		} else if (props.storyStarted) {
 			myBody = _react2.default.createElement(_storyBlock2.default, null); // Part 3: Read through the story
 		} else {
@@ -21626,9 +21636,17 @@
 		_jquery2.default.get('/blanks?storybook=' + storyBook, function (data) {
 			var myData = JSON.parse(data);
 			props.populateStory(myData);
+			console.log(props);
+			function compare(a, b) {
+				if (a.id < b.id) return -1;
+				if (a.id > b.id) return 1;
+				return 0;
+			}
+			myData.sort(compare);
 			//console.log(myData);  gives back array of objects
 		});
 	};
+
 	var StartBlock = function StartBlock(props) {
 		return _react2.default.createElement(
 			'div',
@@ -31994,51 +32012,11 @@
 
 /***/ },
 /* 178 */,
-/* 179 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _wordInput = __webpack_require__(180);
-
-	var _wordInput2 = _interopRequireDefault(_wordInput);
-
-	var _form = __webpack_require__(181);
-
-	var _form2 = _interopRequireDefault(_form);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// props.storyInfo[0].blank needs be called
-	// sort array of objects in db to be in order and grab the blank from the array and put it on the screen
-	//.map react look up
-
-	var FillIns = function FillIns(_ref) {
-		var props = _ref.props;
-
-		return _react2.default.createElement(
-			'div',
-			{ className: 'fill-ins' },
-			_react2.default.createElement(_wordInput2.default, null),
-			_react2.default.createElement(_form2.default, null)
-		);
-	};
-
-	exports.default = FillIns;
-
-/***/ },
+/* 179 */,
 /* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -32050,22 +32028,42 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var WordInput = function WordInput() {
+	// class WordInput extends Component {
+	// 	constructor(props) {
+	// 		super(props);
+	// 		this.
+	// 	};
+	// 	render() {
+	// 		return (
+	// 			<div>
+	// 				<h1>{props.type.replace(/[_<>]/g, " ")}</h1>
+
+	// 			</div>
+	// 		)
+	// 	}
+	// };
+
+
+	var WordInput = function WordInput(props) {
 		return _react2.default.createElement(
-			'div',
+			"div",
 			null,
 			_react2.default.createElement(
-				'h1',
+				"h1",
 				null,
-				'hi'
-			),
-			_react2.default.createElement(
-				'button',
-				{ className: 'btn btn-warning btn-lg' },
-				'Submit Words'
+				props.type.replace(/[_<>]/g, " ")
 			)
 		);
 	};
+
+	//store chapter on each word element
+	//wordInput class-based component
+	//{inputs}
+	// create inputs array
+	//whatever I am sending to form
+	//storeID
+	//matching right value in state to right input
+	// similar to udemy youtube exercise
 
 	exports.default = WordInput;
 	//onClick={readStory.bind(this, '1A', props)}
@@ -32084,44 +32082,39 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _wordInput = __webpack_require__(180);
+
+	var _wordInput2 = _interopRequireDefault(_wordInput);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Form = function Form() {
+	var Form = function Form(props) {
+		var outputAnswers = []; //flatten array {type:'', value:''}
+
+		var _loop = function _loop(pos) {
+			var answers = props.answers[pos];
+			answers.forEach(function (item, i) {
+				outputAnswers.push(_react2.default.createElement(_wordInput2.default, { key: pos + i, position: pos, type: item.type }));
+			});
+		};
+
+		for (var pos in props.answers) {
+			_loop(pos);
+		}
 		return _react2.default.createElement(
-			'h1',
-			null,
-			'Form'
+			'div',
+			{ className: 'form' },
+			outputAnswers,
+			_react2.default.createElement(
+				'button',
+				{ className: 'btn btn-warning btn-lg' },
+				'Submit Words'
+			)
 		);
 	};
 
-	// class MyForm extends React.Component {
-	// 	constructor(props) {
-	// 		super(props); 
-	// 		this.state = {value: 'Hello!'};
-	// 		this.handleChange = this.handleChange.bind(this);
-	// 	}
-
-	// 	handleChange(event) {
-	// 		this.setState({value: event.target.value});
-	// 	}
-
-	// 	render() {
-	// 		return (
-	// 			<input
-	// 				type="text"
-	// 				value={this.state.value}
-	// 				onChange={this.handleChange}
-	// 			/>
-	// 		);
-	// 	}
-	// }
-
-	// const Form = ({}) => {
-	// 	return (
-	// 		//use a loop to render multiple word inputs
-	// 		//stuff
-	// 	);
-	// };
+	//make form tag in form
+	// right answer needs to match to right word input 
 
 	exports.default = Form;
 
@@ -32142,6 +32135,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+	// import Tree from './tree';
+	// import CurrentChapter from './current-chapter';
 
 	var StoryBlock = function StoryBlock(_ref) {
 		_objectDestructuringEmpty(_ref);

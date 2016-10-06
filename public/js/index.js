@@ -13,19 +13,32 @@ class App extends Component {
 			storyStarted: false,
 			storyInfo: null,
 			whereAmI: null,
+			answers: null,
 		};
 	};
 	chooseStory () {
-		this.setState({chooseStory: true}) //
+		this.setState({chooseStory: true}) // Pulls up selectable stories in StartBlock
 	}
 	populateStory (res) {
-		this.setState({storyInfo: res, isBeginning: true}) // Tells me which story to query the DB
+		var answers = {};
+		var chapters = res; // Local variable is res from ...
+		for (var i = 0; i < chapters.length; i++) {
+			var tokens = chapters[i].chapterText.match(/(<\w+>)/g);
+			answers[chapters[i].position] = []; // using chapter key initialize empty array
+			// answers.[](chapters.position) invokes bracket function and passing in chap
+			for (var j = 0; j < tokens.length; j++) {
+				answers[chapters[i].position].push({type:tokens[j], value:""}); //will be modified later
+				console.log(answers)
+			}
+		}
+		this.setState({storyInfo: res, isBeginning: true, answers: answers});
+		console.log(this.state) // Tells which story to query from the database
 	}
 	readStory (res) {
-		this.setState({storyStarted: true}) // Shows the story
+		this.setState({storyStarted: true}) // Should show the story
 	}
 	whereAmI () {
-		this.setState({tree: res})
+		this.setState({tree: res}) // Should tell us which "position" we're in so we can populate the tree
 	}
 	render() {
 		return (

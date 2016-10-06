@@ -40,6 +40,7 @@ db.once("open", function() {
 	});
 	console.log("Mongoose connection successful.");
 });
+// will need radiant_forest to change based on story
 
 mongoose.connect("mongodb://" + DB_USER + ":" + DB_PASS + "@" + DB_PATH);
 
@@ -83,7 +84,7 @@ var StorySchema = new Schema({
 		value: String, //their answer
 	},
 	treePic: {
-		type: String, // How to reference image? Can be if statement on Tree?
+		type: String, // How do I change the src?
 	}
 })
 

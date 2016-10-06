@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import StartBlock from './start-block';
 import OpenPage from './open-page';
-import FillIns from './fill-ins';
+import Form from './form';
 import StoryBlock from './story-block';
-// import Tree from './tree';
-// import CurrentChapter from './current-chapter';
 
 const Body = (props) => {
 	var myBody;
 	console.log(props.storyInfo)
 	if (props.isBeginning) {
 		myBody = 
-			<FillIns /> // Part 2: Fill in your words readStory={props.readStory}
+			<Form {...props} /> // Part 2: Fill in your words readStory={props.readStory}
 	} else if (props.storyStarted) {
 		myBody = 
 			<StoryBlock /> // Part 3: Read through the story

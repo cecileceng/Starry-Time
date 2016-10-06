@@ -6,7 +6,7 @@ const CurrentChapter = (props) => {
 			{props.chapterText}
 		</div>
 		<div className='options'>
-			{props.optionA}
+			{props.optionA} 
 			<br />
 			{props.optionB}
 		</div>
@@ -15,4 +15,4 @@ const CurrentChapter = (props) => {
 
 export default CurrentChapter;
 
-//how to call line 6?s
+//needs to populate current chapter, options need to make a change to the current chapter

@@ -5,9 +5,19 @@ const selectStory = (storyBook, props) => {
 	$.get('/blanks?storybook='+ storyBook, function(data) {
 		var myData = JSON.parse(data);
 		props.populateStory(myData);
+		console.log(props);
+		function compare(a,b) {
+			if (a.id < b.id)
+				return -1;
+			if (a.id > b.id)
+				return 1;
+			return 0;
+		}
+		myData.sort(compare);
 		//console.log(myData);  gives back array of objects
 	});
 }
+
 const StartBlock = (props) => {
 	return (
 		<div className='start-block'>

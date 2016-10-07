@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-// import Tree from './tree';
-// import CurrentChapter from './current-chapter';
+import Tree from './tree';
+import CurrentChapter from './current-chapter';
 
-const StoryBlock = ({}) => {
+const StoryBlock = (props) => {
 	return (
 		<div className='story-block'>
 			<div className='row'>
 				<div className='col-md-6 left-side storytime'>
-					<CurrentChapter />
+					<CurrentChapter {...props} />
 					<br />
 					//optionA
 					<br />
@@ -20,6 +20,9 @@ const StoryBlock = ({}) => {
 		</div>
 	);
 };
+
+
+
 // 	return (
 // 		<div className='story-block'>
 // 			<div className='row'>

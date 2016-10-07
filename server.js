@@ -49,6 +49,12 @@ app.get("/", function(req,res) {
 	res.sendFile('./public/index.html');
 })
 
+//ROUTE TO SEND ANSWERS (IN ORDER TO SAVE TO DB)
+// app.post("/send", function(req, res) {
+// 	console.log(req.body);
+// 	res.json({status:200});
+// })
+
 //ROUTE TO LOGIN (PUTTING THINGS INTO THE DB) PHASE 2
 
 //MODEL

@@ -5,7 +5,6 @@ const selectStory = (storyBook, props) => {
 	$.get('/blanks?storybook='+ storyBook, function(data) {
 		var myData = JSON.parse(data);
 		props.populateStory(myData);
-		console.log(props);
 		function compare(a,b) {
 			if (a.id < b.id)
 				return -1;

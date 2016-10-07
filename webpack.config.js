@@ -4,6 +4,8 @@ module.exports = {
 		filename: "public/bundle.js" //Then output into this file
 	},
 
+	devtool: 'source-map',
+
 	module: { //This will be what we do
 		loaders: [
 			{

@@ -4,7 +4,7 @@ const Footer = ({}) => {
 	return (
 		<div className='footer'>
 			<hr />
-			<p>Built by <a href='mailto:cecile.ceng@gmail.com'>Cecile Nguyen</a> at <a href='http://cecile.io'>http://cecile.io</a></p>
+			<p><a href='http://cecile.io' target='_blank'>&copy; Cecile Nguyen</a></p>
 		</div>
 	);
 };

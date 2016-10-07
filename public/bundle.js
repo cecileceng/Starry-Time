@@ -91,7 +91,7 @@
 				chooseStory: false,
 				storyStarted: false,
 				storyInfo: null,
-				whereAmI: null, //set to starting position
+				whereAmI: null, //set to starting position Form
 				answers: null
 			};
 			return _this;
@@ -129,25 +129,25 @@
 		}, {
 			key: 'nextChapter',
 			value: function nextChapter(newKey) {
-	
-				// if(!newKey){ // if newKey is not passed to this function
-				// 	newKey = this.state.whereAmI;
-				//  figure out the next chapter key
-				// }
-	
 				this.setState({
 					whereAmI: newKey
 				});
+				// only runs if newKey is not passed to this function
+				// if(!newKey){ 
+				// 	newKey = this.state.whereAmI;
+				//  figure out the next chapter key
+				// }
 			}
 		}, {
 			key: 'changeAnswer',
 			value: function changeAnswer(chapter, answerIndex, value) {
 				var answers = Object.assign({}, this.state.answers);
-				console.log(chapter + "|" + answerIndex + "|" + value); //undefined but why?
-				console.log(answers); //undefined but why?
+				console.log(chapter + "|" + answerIndex + "|" + value);
+				console.log(answers);
 				answers[chapter][answerIndex].value = value;
 				this.setState({ answers: answers });
 			}
+			// FUTURE PLANS FOR SAVING TO DATABASE
 			// sendAnswers(){
 			// 	console.log('Sending...', this.state.answers );
 			// 	// var answers = this.state.answers;
@@ -32166,15 +32166,13 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _tree = __webpack_require__(181);
-	
-	var _tree2 = _interopRequireDefault(_tree);
-	
 	var _currentChapter = __webpack_require__(182);
 	
 	var _currentChapter2 = _interopRequireDefault(_currentChapter);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// import Tree from './tree';
 	
 	var StoryBlock = function StoryBlock(props) {
 		return _react2.default.createElement(
@@ -32182,45 +32180,20 @@
 			{ className: 'story-block' },
 			_react2.default.createElement(
 				'div',
-				{ className: 'row' },
-				_react2.default.createElement(
-					'div',
-					{ className: 'col-md-6 left-side storytime' },
-					_react2.default.createElement(_currentChapter2.default, props),
-					_react2.default.createElement('br', null),
-					'//optionA',
-					_react2.default.createElement('br', null),
-					'//optionB'
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'col-md-6 right-side' },
-					_react2.default.createElement(_tree2.default, null)
-				)
+				{ className: 'storytime' },
+				_react2.default.createElement(_currentChapter2.default, props)
+			),
+			_react2.default.createElement(
+				'div',
+				{ className: 'options' },
+				'//optionA',
+				_react2.default.createElement('br', null),
+				'//optionB'
 			)
 		);
 	};
 	
-	// 	return (
-	// 		<div className='story-block'>
-	// 			<div className='row'>
-	// 				<div className='col-md-7 story-page'>
-	// 					myText={this.state.currentStoryParagraph}
-	// 				</div>
-	// 				<div className='col-md-5 tree-tier'>
-	// 					<img src='../images/starter-tree.jpg' alt='Pick Your Path' />
-	// 				</div>
-	// 			</div>
-	// 		</div>
-	// 	);
-	// };
-	
 	exports.default = StoryBlock;
-	
-	//line 8 figure out way to input database text? also need to setState
-	//line 11 how to import image from database
-	
-	//vs storyblock = <CurrentChapter /> <Tree />
 
 /***/ },
 /* 180 */
@@ -32250,17 +32223,10 @@
 			_react2.default.createElement(
 				'p',
 				null,
-				'Built by ',
 				_react2.default.createElement(
 					'a',
-					{ href: 'mailto:cecile.ceng@gmail.com' },
-					'Cecile Nguyen'
-				),
-				' at ',
-				_react2.default.createElement(
-					'a',
-					{ href: 'http://cecile.io' },
-					'http://cecile.io'
+					{ href: 'http://cecile.io', target: '_blank' },
+					'© Cecile Nguyen'
 				)
 			)
 		);
@@ -32269,42 +32235,7 @@
 	exports.default = Footer;
 
 /***/ },
-/* 181 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _jquery = __webpack_require__(175);
-	
-	var _jquery2 = _interopRequireDefault(_jquery);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
-	
-	//would like to be able to replace the src with db info
-	
-	var Tree = function Tree(_ref) {
-		_objectDestructuringEmpty(_ref);
-	
-		return _react2.default.createElement(
-			'div',
-			{ className: 'tree' },
-			_react2.default.createElement('img', { className: 'treePics', src: '../images/starter-tree.jpg', alt: 'Tree' })
-		);
-	};
-	
-	exports.default = Tree;
-
-/***/ },
+/* 181 */,
 /* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -32369,8 +32300,9 @@
 	
 	exports.default = CurrentChapter;
 	
-	//initially load the right information
 	// modify props.whereAmI on every onClick by calling choose option func in INDEXJS
+	
+	//onClick ^ modify state w/newKey based on the props.storyInfo[FINDINDEX].pathA
 
 /***/ }
 /******/ ]);

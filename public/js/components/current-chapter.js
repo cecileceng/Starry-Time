@@ -51,5 +51,6 @@ const CurrentChapter = (props) => {
 
 export default CurrentChapter;
 
-//initially load the right information
 // modify props.whereAmI on every onClick by calling choose option func in INDEXJS
+
+//onClick ^ modify state w/newKey based on the props.storyInfo[FINDINDEX].pathA

@@ -12,7 +12,7 @@ class App extends Component {
 			chooseStory: false,
 			storyStarted: false,
 			storyInfo: null,
-			whereAmI: null, //set to starting position
+			whereAmI: null, //set to starting position Form
 			answers: null,
 		};
 	};
@@ -40,23 +40,23 @@ class App extends Component {
 		this.nextChapter('1A');
 	}
 	nextChapter (newKey) {
-
-		// if(!newKey){ // if newKey is not passed to this function
-		// 	newKey = this.state.whereAmI;
-		//  figure out the next chapter key
-		// }
-
 		this.setState({
 			whereAmI: newKey
 		});
+		// only runs if newKey is not passed to this function
+		// if(!newKey){ 
+		// 	newKey = this.state.whereAmI;
+		//  figure out the next chapter key
+		// }
 	}
 	changeAnswer (chapter, answerIndex, value) {
 		var answers = Object.assign({}, this.state.answers);
-		console.log(chapter + "|" + answerIndex + "|" + value); //undefined but why?
-		console.log(answers); //undefined but why?
+		console.log(chapter + "|" + answerIndex + "|" + value); 
+		console.log(answers); 
 		answers[chapter][answerIndex].value = value;
 		this.setState({answers: answers});
 	}
+	// FUTURE PLANS FOR SAVING TO DATABASE
 	// sendAnswers(){
 	// 	console.log('Sending...', this.state.answers );
 	// 	// var answers = this.state.answers;

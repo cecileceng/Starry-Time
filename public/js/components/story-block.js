@@ -8,11 +8,6 @@ const StoryBlock = (props) => {
 			<div className='storytime'>
 				<CurrentChapter {...props} />
 			</div>
-			<div className='options'>
-					//optionA
-					<br />
-					//optionB
-			</div>
 		</div>
 	);
 };

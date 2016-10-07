@@ -40,7 +40,7 @@ db.once("open", function() {
 	});
 	console.log("Mongoose connection successful.");
 });
-// will need radiant_forest to change based on story
+// will need radiant_forest to story variable type to change based on story
 
 mongoose.connect("mongodb://" + DB_USER + ":" + DB_PASS + "@" + DB_PATH);
 
@@ -49,13 +49,13 @@ app.get("/", function(req,res) {
 	res.sendFile('./public/index.html');
 })
 
-//ROUTE TO SEND ANSWERS (IN ORDER TO SAVE TO DB)
+//ROUTE TO LOGIN PHASE 2
+
+//ROUTE TO SEND ANSWERS AND SAVE TO DB PHASE 2
 // app.post("/send", function(req, res) {
 // 	console.log(req.body);
 // 	res.json({status:200});
 // })
-
-//ROUTE TO LOGIN (PUTTING THINGS INTO THE DB) PHASE 2
 
 //MODEL
 var Schema = mongoose.Schema;

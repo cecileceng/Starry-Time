@@ -12,7 +12,7 @@ class App extends Component {
 			chooseStory: false,
 			storyStarted: false,
 			storyInfo: null,
-			whereAmI: null, //set to starting position Form
+			whereAmI: '1A', //set to starting position in Form, changes on option buttons
 			answers: null,
 		};
 	};
@@ -37,13 +37,22 @@ class App extends Component {
 	}
 	readStory (res) {
 		this.setState({storyStarted: true, isBeginning:false}) // Should show the story
-		this.nextChapter('1A');
+		// this.nextChapter('1A');
 	}
 	nextChapter (newKey) {
+	// 	if (this.state.whereAmI==='1A') {
+	// 	var positionToPass = '1A';
+	// } else {
+	// 	var positionToPass = newKey[path];
+	// }
+	console.log('gjgfjwefuej', newKey);
 		this.setState({
 			whereAmI: newKey
 		});
-		// only runs if newKey is not passed to this function
+		// console.log('Hello', newKey, path);
+//ABOVE RECENT
+
+		// below only runs if newKey is not passed to this function
 		// if(!newKey){ 
 		// 	newKey = this.state.whereAmI;
 		//  figure out the next chapter key
@@ -72,6 +81,7 @@ class App extends Component {
 			<div className='main-container'>
 				<Header />
 				<Body  {...this.state} //takes in all of App object
+					nextChapter={this.nextChapter.bind(this)}
 					onAnswerChange={this.changeAnswer.bind(this)}
 					chooseStoryFn={this.chooseStory.bind(this)}
 					populateStory={this.populateStory.bind(this)}

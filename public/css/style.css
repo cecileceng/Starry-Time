@@ -2,6 +2,13 @@
 
 }
 
+.jumbotron {
+	background-image: url(../images/parchment.jpg);
+	background-position: 0% 25%;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
 .header {
 	text-align: center;
 }
@@ -23,11 +30,7 @@
 }
 
 .start-block {
-
-}
-
-.fill-ins {
-
+	width: 800px;
 }
 
 .form {
@@ -60,4 +63,10 @@
 
 .right-side {
 	vertical-align: left;
+}
+
+#inner {
+	width: 75%;
+	margin: 0 auto; 
+	padding: 10px;
 }

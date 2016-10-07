@@ -66,7 +66,7 @@
 	
 	var _body2 = _interopRequireDefault(_body);
 	
-	var _footer = __webpack_require__(180);
+	var _footer = __webpack_require__(181);
 	
 	var _footer2 = _interopRequireDefault(_footer);
 	
@@ -91,7 +91,7 @@
 				chooseStory: false,
 				storyStarted: false,
 				storyInfo: null,
-				whereAmI: null, //set to starting position Form
+				whereAmI: '1A', //set to starting position in Form, changes on option buttons
 				answers: null
 			};
 			return _this;
@@ -124,15 +124,24 @@
 			key: 'readStory',
 			value: function readStory(res) {
 				this.setState({ storyStarted: true, isBeginning: false }); // Should show the story
-				this.nextChapter('1A');
+				// this.nextChapter('1A');
 			}
 		}, {
 			key: 'nextChapter',
 			value: function nextChapter(newKey) {
+				// 	if (this.state.whereAmI==='1A') {
+				// 	var positionToPass = '1A';
+				// } else {
+				// 	var positionToPass = newKey[path];
+				// }
+				console.log('gjgfjwefuej', newKey);
 				this.setState({
 					whereAmI: newKey
 				});
-				// only runs if newKey is not passed to this function
+				// console.log('Hello', newKey, path);
+				//ABOVE RECENT
+	
+				// below only runs if newKey is not passed to this function
 				// if(!newKey){ 
 				// 	newKey = this.state.whereAmI;
 				//  figure out the next chapter key
@@ -167,6 +176,7 @@
 					{ className: 'main-container' },
 					_react2.default.createElement(_header2.default, null),
 					_react2.default.createElement(_body2.default, _extends({}, this.state, { //takes in all of App object
+						nextChapter: this.nextChapter.bind(this),
 						onAnswerChange: this.changeAnswer.bind(this),
 						chooseStoryFn: this.chooseStory.bind(this),
 						populateStory: this.populateStory.bind(this),
@@ -21703,7 +21713,7 @@
 	var StartBlock = function StartBlock(props) {
 		return _react2.default.createElement(
 			'div',
-			{ className: 'start-block' },
+			{ className: 'start-block', id: 'inner' },
 			_react2.default.createElement(
 				'div',
 				{ className: 'row' },
@@ -32040,7 +32050,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Form = function Form(props) {
-		var outputAnswers = []; //flatten array {type:'', value:''}
+		var outputAnswers = []; //flatten array for ease of use {type:'', value:''}
 	
 		var _loop = function _loop(pos) {
 			var answers = props.answers[pos];
@@ -32057,15 +32067,14 @@
 			'div',
 			{ className: 'form' },
 			outputAnswers,
+			_react2.default.createElement('br', null),
 			_react2.default.createElement(
 				'button',
 				{ onClick: props.handleSubmit, className: 'btn btn-warning btn-lg' },
-				'Submit Words'
+				'Customize Story'
 			)
 		);
 	};
-	
-	//Submit needs to take to next state/page to go to INDEXJSreadStory)
 	
 	exports.default = Form;
 
@@ -32166,7 +32175,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _currentChapter = __webpack_require__(182);
+	var _currentChapter = __webpack_require__(180);
 	
 	var _currentChapter2 = _interopRequireDefault(_currentChapter);
 	
@@ -32182,13 +32191,6 @@
 				'div',
 				{ className: 'storytime' },
 				_react2.default.createElement(_currentChapter2.default, props)
-			),
-			_react2.default.createElement(
-				'div',
-				{ className: 'options' },
-				'//optionA',
-				_react2.default.createElement('br', null),
-				'//optionB'
 			)
 		);
 	};
@@ -32197,6 +32199,132 @@
 
 /***/ },
 /* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CurrentChapter = function (_Component) {
+		_inherits(CurrentChapter, _Component);
+	
+		function CurrentChapter() {
+			_classCallCheck(this, CurrentChapter);
+	
+			return _possibleConstructorReturn(this, (CurrentChapter.__proto__ || Object.getPrototypeOf(CurrentChapter)).apply(this, arguments));
+		}
+	
+		_createClass(CurrentChapter, [{
+			key: 'replaceText',
+			value: function replaceText(tplString, placeholder, val) {
+				// var city= 'Austin';
+				// var tplString = "Some text <city> more text";
+				// var placeholder = '<city>';
+				// tplString.replace(placeholder, city);
+				console.log('replaceText', tplString, placeholder, val);
+				return tplString.replace(placeholder, val);
+			}
+		}, {
+			key: 'whereToGo',
+			value: function whereToGo(e) {
+				console.log(this.props.whereAmI);
+				for (var k = 0; k < this.props.storyInfo.length; k++) {
+					if (this.props.storyInfo[k].position === this.props.whereAmI) {
+						var hereIAmNow = this.props.storyInfo[k][e.target.getAttribute('data-path')];
+						this.props.nextChapter(hereIAmNow);
+					}
+				}
+				// 	this.props.nextChapter(e.target.getAttribute('data-path'))
+				// console.log();
+				//find out whereAmI =
+				//use whereAmI to search through the array until we find position key 
+				//stop and take that object to use all the values from it
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var pos = this.props.storyInfo[0].position;
+				// props.storyInfo - is an array of objects
+				// we want the object where position==pos
+				var currentIndex = 0;
+				var i = 0,
+				    len = this.props.storyInfo.length;
+				var storyInfo = null;
+				var chapterText = this.props.storyInfo[0].chapterText;
+				for (; i < len; i++) {
+					if (this.props.storyInfo[i].position === this.props.whereAmI) {
+						currentIndex = i;
+						console.log(i);
+						chapterText = this.props.storyInfo[i].chapterText;
+						// if(this.props.storyInfo[i].position==pos){
+						// 	storyInfo = this.props.storyInfo[i];
+						// 	break;
+					}
+				}
+	
+				// let chapterText = storyInfo.chapterText;
+	
+	
+				// var storyInfo = props.storyInfo[pos:position];
+				var text = this.replaceText(chapterText, this.props.answers[this.props.whereAmI][0].type, this.props.answers[this.props.whereAmI][0].value);
+	
+				console.log(this.props);
+				// console.log('CurrentChapter', {pos:pos, storyInfo:storyInfo}, props.storyInfo[pos], text);
+	
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'div',
+						{ className: 'current-chapter jumbotron', id: 'inner' },
+						text,
+						_react2.default.createElement(
+							'div',
+							{ className: 'options' },
+							_react2.default.createElement(
+								'button',
+								{ 'data-path': 'pathA', onClick: this.whereToGo.bind(this) },
+								this.props.storyInfo[currentIndex].optionA
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement(
+								'button',
+								{ 'data-path': 'pathB', onClick: this.whereToGo.bind(this) },
+								this.props.storyInfo[currentIndex].optionB
+							)
+						)
+					)
+				);
+			}
+		}]);
+	
+		return CurrentChapter;
+	}(_react.Component);
+	
+	exports.default = CurrentChapter;
+	
+	// modify props.whereAmI on every onClick by calling choose option func in INDEXJS
+	
+	//onClick ^ modify state w/newKey based on the props.storyInfo[FINDINDEX].pathA
+
+/***/ },
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32233,76 +32361,6 @@
 	};
 	
 	exports.default = Footer;
-
-/***/ },
-/* 181 */,
-/* 182 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function replaceText(tplString, placeholder, val) {
-		// var city= 'Austin';
-		// var tplString = "Some text <city> more text";
-		// var placeholder = '<city>';
-		// tplString.replace(placeholder, city);
-		console.log('replaceText', tplString, placeholder, val);
-		return tplString.replace(placeholder, val);
-	}
-	
-	var CurrentChapter = function CurrentChapter(props) {
-	
-		var pos = props.storyInfo[0].position;
-		// props.storyInfo - is an array of objects
-		// we want the object where position==pos
-		var i = 0,
-		    len = props.storyInfo.length;
-		var storyInfo = null;
-		for (; i < len; i++) {
-			if (props.storyInfo[i].position == pos) {
-				storyInfo = props.storyInfo[i];
-				break;
-			}
-		}
-	
-		var chapterText = storyInfo.chapterText;
-	
-		// var storyInfo = props.storyInfo[pos:position];
-		var text = replaceText(chapterText, '<Name_of_Town>', props.answers[pos][0].value);
-	
-		console.log('CurrentChapter', { pos: pos, storyInfo: storyInfo }, props.storyInfo[pos], text);
-	
-		return _react2.default.createElement(
-			'div',
-			null,
-			_react2.default.createElement(
-				'div',
-				{ className: 'current-chapter' },
-				text
-			),
-			_react2.default.createElement(
-				'div',
-				{ className: 'options' },
-				_react2.default.createElement('br', null)
-			)
-		);
-	};
-	
-	exports.default = CurrentChapter;
-	
-	// modify props.whereAmI on every onClick by calling choose option func in INDEXJS
-	
-	//onClick ^ modify state w/newKey based on the props.storyInfo[FINDINDEX].pathA
 
 /***/ }
 /******/ ]);

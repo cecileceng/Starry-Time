@@ -19,7 +19,7 @@ const selectStory = (storyBook, props) => {
 
 const StartBlock = (props) => {
 	return (
-		<div className='start-block'>
+		<div className='start-block' id='inner'>
 			<div className='row'>
 				<div className='col-md-6 left-side'>
 					<img src='../images/protagonist-girl.jpg' alt='Starry Time Protagonist' />

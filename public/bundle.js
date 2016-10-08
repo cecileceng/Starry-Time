@@ -21715,11 +21715,6 @@
 					_react2.default.createElement(
 						'h3',
 						null,
-						'Start Your Adventure'
-					),
-					_react2.default.createElement(
-						'h4',
-						null,
 						'Select your story book'
 					),
 					_react2.default.createElement(
@@ -31990,7 +31985,11 @@
 				_react2.default.createElement(
 					'div',
 					{ className: 'col-md-6 left-side' },
-					_react2.default.createElement('img', { src: '../images/protagonist-girl.jpg', alt: 'Starry Time Protagonist' })
+					_react2.default.createElement(
+						'h3',
+						null,
+						'Welcome to the wonderful world of Starry Time where you are the star of your own personalized story -- make different choices to get different endings!'
+					)
 				),
 				_react2.default.createElement(
 					'div',

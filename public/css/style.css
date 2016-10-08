@@ -1,7 +1,6 @@
 .main-container {
 	background-image: url(../images/forest.jpg);
 	background-repeat: no-repeat;
-	background-attachment: fixed;
 	background-size: cover;
 }
 
@@ -38,9 +37,15 @@
 
 .start-block {
 	width: 800px;
+	min-height: 400px;
 }
 
-.start-block h3 {
+.starblock h3 {
+	color: white;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+h3 {
 	color: white;
 	text-shadow: 2px 2px 4px #000000;
 }
@@ -60,7 +65,7 @@
 }
 
 .open-page {
-	
+	padding-top: 100px;
 }
 
 .story-block {
@@ -68,7 +73,12 @@
 }
 
 #oppressed {
-	margin: 200px auto; 
+	margin: 150px auto; 
+	padding: 10px;
+}
+
+#less-oppressed {
+	margin: 100px auto; 
 	padding: 10px;
 }
 
@@ -88,6 +98,7 @@
 .left-side {
 	vertical-align: right;
 	margin-left: 500px auto;
+	padding-top: 100px;
 }
 
 .right-side {
@@ -101,6 +112,6 @@
 }
 
 #iLikeBigButtonsAndICannotLie {
-	height:200px;
-	width:200px;
+	height:100px;
+	width:250px;
 }

@@ -25,8 +25,7 @@ const StartBlock = (props) => {
 					{/*<img src='../images/protagonist-girl.jpg' alt='Starry Time Protagonist' />*/}
 				</div>
 				<div className='col-md-6 right-side'>
-					<h3>Start Your Adventure</h3>
-					<h4>Select your story book</h4>
+					<h3>Select your story book</h3>
 					<ul>
 						<li><img src='../images/radiant-forest-book-cover.png' alt='The Radiant Forest Story' onClick={selectStory.bind(this, 'Radiant-Forest', props)} /></li> 
 						{/*<li><img src='../images/placeholder-book-cover.png' alt='Coming Soon' /></li>*/}

@@ -5,8 +5,6 @@ var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var logger = require("morgan");
 var jquery = require("jquery");
-var pry = require("pryjs");
-// eval(pry.it)
 
 //EXPRESS INSTANCE
 var app = express();

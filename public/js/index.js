@@ -40,18 +40,9 @@ class App extends Component {
 		// this.nextChapter('1A');
 	}
 	nextChapter (newKey) {
-	// 	if (this.state.whereAmI==='1A') {
-	// 	var positionToPass = '1A';
-	// } else {
-	// 	var positionToPass = newKey[path];
-	// }
-	console.log('gjgfjwefuej', newKey);
 		this.setState({
 			whereAmI: newKey
 		});
-		// console.log('Hello', newKey, path);
-//ABOVE RECENT
-
 		// below only runs if newKey is not passed to this function
 		// if(!newKey){ 
 		// 	newKey = this.state.whereAmI;

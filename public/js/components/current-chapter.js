@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 class CurrentChapter extends Component {
 
  replaceText (tplString, placeholder, val){
-	// var city= 'Austin';
-	// var tplString = "Some text <city> more text";
-	// var placeholder = '<city>';
-	// tplString.replace(placeholder, city);
 	console.log('replaceText', tplString, placeholder, val)
 	return tplString.replace(placeholder, val);
 }
@@ -48,23 +44,25 @@ class CurrentChapter extends Component {
 
 
 		// var storyInfo = props.storyInfo[pos:position];
-		var text = this.replaceText(chapterText, this.props.answers[this.props.whereAmI][0].type, this.props.answers[this.props.whereAmI][0].value );
-
-	console.log(this.props);
+		for (var a = 0; a < this.props.answers[this.props.whereAmI].length; a++){ 
+			chapterText = this.replaceText(chapterText, this.props.answers[this.props.whereAmI][a].type, this.props.answers[this.props.whereAmI][a].value );
+		console.log(chapterText);
+//	console.log(this.props);
 		// console.log('CurrentChapter', {pos:pos, storyInfo:storyInfo}, props.storyInfo[pos], text);
-
+	}
 		return (
 			<div>
 				<div className='current-chapter jumbotron' id='inner'>
 					{/* JSON.stringify(props.answers['1A']) */}
-					{text}
+					{chapterText}
 					{/* {props.storyInfo[props.whereAmI].chapterText} */}
 								<div className='options'>
-					<button data-path='pathA' onClick={this.whereToGo.bind(this)}>
+					<button hidden={this.props.storyInfo[currentIndex].optionA === null} data-path='pathA' onClick={this.whereToGo.bind(this)}>
 					{this.props.storyInfo[currentIndex].optionA}
 					</button>
 					<br />
-					<button data-path='pathB' onClick={this.whereToGo.bind(this)}>{this.props.storyInfo[currentIndex].optionB}</button>
+					<button hidden={this.props.storyInfo[currentIndex].optionB === null} data-path='pathB' onClick={this.whereToGo.bind(this)}>{this.props.storyInfo[currentIndex].optionB}</button>
+					<button hidden={this.props.storyInfo[currentIndex].optionA !== null}>The End</button>
 				</div>
 				</div>
 			</div>
@@ -73,7 +71,3 @@ class CurrentChapter extends Component {
 }
 
 export default CurrentChapter;
-
-// modify props.whereAmI on every onClick by calling choose option func in INDEXJS
-
-//onClick ^ modify state w/newKey based on the props.storyInfo[FINDINDEX].pathA

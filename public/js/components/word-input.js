@@ -35,4 +35,3 @@ class WordInput extends Component {
 
 
 export default WordInput;
-//onClick={readStory.bind(this, '1A', props)}

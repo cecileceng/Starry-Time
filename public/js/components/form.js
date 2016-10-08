@@ -11,10 +11,10 @@ const Form = (props) => {
 	}
 
 	return (
-		<div className='form'>
+		<div className='form' id='inner'>
 			{outputAnswers}
 			<br />
-			<button onClick={props.handleSubmit} className='btn btn-warning btn-lg'>Customize Story</button> 
+			<button onClick={props.handleSubmit} className='btn btn-warning btn-lg'>Customize Your Story</button> 
 		</div>
 	);
 }

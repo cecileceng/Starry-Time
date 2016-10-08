@@ -22,14 +22,14 @@ const StartBlock = (props) => {
 		<div className='start-block' id='inner'>
 			<div className='row'>
 				<div className='col-md-6 left-side'>
-					<img src='../images/protagonist-girl.jpg' alt='Starry Time Protagonist' />
+					{/*<img src='../images/protagonist-girl.jpg' alt='Starry Time Protagonist' />*/}
 				</div>
 				<div className='col-md-6 right-side'>
 					<h3>Start Your Adventure</h3>
 					<h4>Select your story book</h4>
 					<ul>
-						<li><img src='../images/radiant-forest-book-cover.jpg' alt='The Radiant Forest Story' onClick={selectStory.bind(this, 'Radiant-Forest', props)} /></li> 
-						<li><img src='../images/placeholder-book-cover.jpg' alt='Coming Soon' /></li>
+						<li><img src='../images/radiant-forest-book-cover.png' alt='The Radiant Forest Story' onClick={selectStory.bind(this, 'Radiant-Forest', props)} /></li> 
+						{/*<li><img src='../images/placeholder-book-cover.png' alt='Coming Soon' /></li>*/}
 					</ul>
 				</div>
 			</div>
@@ -38,5 +38,3 @@ const StartBlock = (props) => {
 };
 
 export default StartBlock;
-
-//need to find way to point to database story

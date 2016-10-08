@@ -1,9 +1,13 @@
 .main-container {
-
+	background-image: url(../images/forest.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
 }
 
 .jumbotron {
-	background-image: url(../images/parchment.jpg);
+	min-height: 500px;
+	background-image: url(../images/butterflies.jpg);
 	background-position: 0% 25%;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -16,10 +20,12 @@
 .header h1 {
 	font-family: 'Pacifico', cursive;
 	font-size: 72px;
+	color: white;
+	text-shadow: 2px 2px 4px #000000;
 }
 
 .header h3 {
-	text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F, 0 0 0.2em #87F;
+	text-shadow: 0 0 0.2em #f9d66a, 0 0 0.2em #f9d66a, 0 0 0.2em #f9d66a;
 	font-family: 'Architects Daughter', cursive;
 }
 
@@ -27,14 +33,30 @@
 	text-align: center;
 	font-family: 'Architects Daughter', cursive;
 	font-size: 25px;
+	text-shadow: 0 0 0.2em #f9d66a, 0 0 0.2em #f9d66a, 0 0 0.2em #f9d66a;
 }
 
 .start-block {
 	width: 800px;
 }
 
-.form {
+.start-block h3 {
+	color: white;
+	text-shadow: 2px 2px 4px #000000;
+}
 
+.start-block h4 {
+	color: white;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.form h1 {
+	color: white;
+	text-shadow: 2px 2px 4px #000000;
+}
+
+.form {
+	align-content: center;
 }
 
 .open-page {
@@ -45,8 +67,14 @@
 
 }
 
-.current-chapter {
+#oppressed {
+	margin: 200px auto; 
+	padding: 10px;
+}
 
+.current-chapter {
+	font-family: 'Slabo 27px', serif;
+	font-size: 36px;
 }
 
 .storytime {
@@ -59,6 +87,7 @@
 
 .left-side {
 	vertical-align: right;
+	margin-left: 500px auto;
 }
 
 .right-side {
@@ -69,4 +98,9 @@
 	width: 75%;
 	margin: 0 auto; 
 	padding: 10px;
+}
+
+#iLikeBigButtonsAndICannotLie {
+	height:200px;
+	width:200px;
 }

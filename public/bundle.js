@@ -129,18 +129,9 @@
 		}, {
 			key: 'nextChapter',
 			value: function nextChapter(newKey) {
-				// 	if (this.state.whereAmI==='1A') {
-				// 	var positionToPass = '1A';
-				// } else {
-				// 	var positionToPass = newKey[path];
-				// }
-				console.log('gjgfjwefuej', newKey);
 				this.setState({
 					whereAmI: newKey
 				});
-				// console.log('Hello', newKey, path);
-				//ABOVE RECENT
-	
 				// below only runs if newKey is not passed to this function
 				// if(!newKey){ 
 				// 	newKey = this.state.whereAmI;
@@ -21717,11 +21708,7 @@
 			_react2.default.createElement(
 				'div',
 				{ className: 'row' },
-				_react2.default.createElement(
-					'div',
-					{ className: 'col-md-6 left-side' },
-					_react2.default.createElement('img', { src: '../images/protagonist-girl.jpg', alt: 'Starry Time Protagonist' })
-				),
+				_react2.default.createElement('div', { className: 'col-md-6 left-side' }),
 				_react2.default.createElement(
 					'div',
 					{ className: 'col-md-6 right-side' },
@@ -21741,12 +21728,7 @@
 						_react2.default.createElement(
 							'li',
 							null,
-							_react2.default.createElement('img', { src: '../images/radiant-forest-book-cover.jpg', alt: 'The Radiant Forest Story', onClick: selectStory.bind(undefined, 'Radiant-Forest', props) })
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement('img', { src: '../images/placeholder-book-cover.jpg', alt: 'Coming Soon' })
+							_react2.default.createElement('img', { src: '../images/radiant-forest-book-cover.png', alt: 'The Radiant Forest Story', onClick: selectStory.bind(undefined, 'Radiant-Forest', props) })
 						)
 					)
 				)
@@ -21755,8 +21737,6 @@
 	};
 	
 	exports.default = StartBlock;
-	
-	//need to find way to point to database story
 
 /***/ },
 /* 175 */
@@ -32003,7 +31983,7 @@
 	var OpenPage = function OpenPage(props) {
 		return _react2.default.createElement(
 			'div',
-			{ className: 'open-page' },
+			{ className: 'open-page', id: 'inner' },
 			_react2.default.createElement(
 				'div',
 				{ className: 'row' },
@@ -32014,10 +31994,10 @@
 				),
 				_react2.default.createElement(
 					'div',
-					{ className: 'col-md-6 right-side' },
+					{ className: 'col-md-6 right-side', id: 'oppressed' },
 					_react2.default.createElement(
 						'button',
-						{ className: 'btn btn-warning btn-lg', onClick: props.chooseStoryFn },
+						{ className: 'btn btn-warning btn-lg', id: 'iLikeBigButtonsAndICannotLie', onClick: props.chooseStoryFn },
 						'Start Your Adventure'
 					)
 				)
@@ -32065,13 +32045,13 @@
 	
 		return _react2.default.createElement(
 			'div',
-			{ className: 'form' },
+			{ className: 'form', id: 'inner' },
 			outputAnswers,
 			_react2.default.createElement('br', null),
 			_react2.default.createElement(
 				'button',
 				{ onClick: props.handleSubmit, className: 'btn btn-warning btn-lg' },
-				'Customize Story'
+				'Customize Your Story'
 			)
 		);
 	};
@@ -32159,7 +32139,6 @@
 	;
 	
 	exports.default = WordInput;
-	//onClick={readStory.bind(this, '1A', props)}
 
 /***/ },
 /* 179 */
@@ -32233,10 +32212,6 @@
 		_createClass(CurrentChapter, [{
 			key: 'replaceText',
 			value: function replaceText(tplString, placeholder, val) {
-				// var city= 'Austin';
-				// var tplString = "Some text <city> more text";
-				// var placeholder = '<city>';
-				// tplString.replace(placeholder, city);
 				console.log('replaceText', tplString, placeholder, val);
 				return tplString.replace(placeholder, val);
 			}
@@ -32282,31 +32257,37 @@
 	
 	
 				// var storyInfo = props.storyInfo[pos:position];
-				var text = this.replaceText(chapterText, this.props.answers[this.props.whereAmI][0].type, this.props.answers[this.props.whereAmI][0].value);
-	
-				console.log(this.props);
-				// console.log('CurrentChapter', {pos:pos, storyInfo:storyInfo}, props.storyInfo[pos], text);
-	
+				for (var a = 0; a < this.props.answers[this.props.whereAmI].length; a++) {
+					chapterText = this.replaceText(chapterText, this.props.answers[this.props.whereAmI][a].type, this.props.answers[this.props.whereAmI][a].value);
+					console.log(chapterText);
+					//	console.log(this.props);
+					// console.log('CurrentChapter', {pos:pos, storyInfo:storyInfo}, props.storyInfo[pos], text);
+				}
 				return _react2.default.createElement(
 					'div',
 					null,
 					_react2.default.createElement(
 						'div',
 						{ className: 'current-chapter jumbotron', id: 'inner' },
-						text,
+						chapterText,
 						_react2.default.createElement(
 							'div',
 							{ className: 'options' },
 							_react2.default.createElement(
 								'button',
-								{ 'data-path': 'pathA', onClick: this.whereToGo.bind(this) },
+								{ hidden: this.props.storyInfo[currentIndex].optionA === null, 'data-path': 'pathA', onClick: this.whereToGo.bind(this) },
 								this.props.storyInfo[currentIndex].optionA
 							),
 							_react2.default.createElement('br', null),
 							_react2.default.createElement(
 								'button',
-								{ 'data-path': 'pathB', onClick: this.whereToGo.bind(this) },
+								{ hidden: this.props.storyInfo[currentIndex].optionB === null, 'data-path': 'pathB', onClick: this.whereToGo.bind(this) },
 								this.props.storyInfo[currentIndex].optionB
+							),
+							_react2.default.createElement(
+								'button',
+								{ hidden: this.props.storyInfo[currentIndex].optionA !== null },
+								'The End'
 							)
 						)
 					)
@@ -32318,10 +32299,6 @@
 	}(_react.Component);
 	
 	exports.default = CurrentChapter;
-	
-	// modify props.whereAmI on every onClick by calling choose option func in INDEXJS
-	
-	//onClick ^ modify state w/newKey based on the props.storyInfo[FINDINDEX].pathA
 
 /***/ },
 /* 181 */

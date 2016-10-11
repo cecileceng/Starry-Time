@@ -8,12 +8,18 @@ class CurrentChapter extends Component {
 }
 
  whereToGo (e) {
- 	console.log(this.props.whereAmI);
- 	for (var k = 0; k < this.props.storyInfo.length; k++) {
- 		if (this.props.storyInfo[k].position === this.props.whereAmI) {
- 			var hereIAmNow = this.props.storyInfo[k][e.target.getAttribute('data-path')];
- 			this.props.nextChapter(hereIAmNow);
- 		}
+ 	var pathChoice = e.target.getAttribute('data-path');
+ 	if (pathChoice === 'reset-story') {
+ 		this.props.nextChapter('1A');
+ 	} else {
+ 		console.log(this.props.whereAmI);
+	 	for (var k = 0; k < this.props.storyInfo.length; k++) {
+	 		if (this.props.storyInfo[k].position === this.props.whereAmI) {
+	 			var hereIAmNow = this.props.storyInfo[k][pathChoice];
+	 			console.log(hereIAmNow);
+	 			this.props.nextChapter(hereIAmNow);
+	 		}
+	 	}
  	}
  // 	this.props.nextChapter(e.target.getAttribute('data-path'))
 	// console.log();
@@ -56,14 +62,17 @@ class CurrentChapter extends Component {
 					{/* JSON.stringify(props.answers['1A']) */}
 					{chapterText}
 					{/* {props.storyInfo[props.whereAmI].chapterText} */}
-								<div className='options'>
-					<button hidden={this.props.storyInfo[currentIndex].optionA === null} data-path='pathA' onClick={this.whereToGo.bind(this)}>
-					{this.props.storyInfo[currentIndex].optionA}
-					</button>
-					<br />
-					<button hidden={this.props.storyInfo[currentIndex].optionB === null} data-path='pathB' onClick={this.whereToGo.bind(this)}>{this.props.storyInfo[currentIndex].optionB}</button>
-					<button hidden={this.props.storyInfo[currentIndex].optionA !== null}>The End</button>
-				</div>
+					<div className='options'>
+						<button hidden={this.props.storyInfo[currentIndex].optionA === null} data-path='pathA' onClick={this.whereToGo.bind(this)}>
+						{this.props.storyInfo[currentIndex].optionA}
+						</button>
+						<br />
+						<button hidden={this.props.storyInfo[currentIndex].optionB === null} data-path='pathB' onClick={this.whereToGo.bind(this)}>{this.props.storyInfo[currentIndex].optionB}</button>
+						<p hidden={this.props.storyInfo[currentIndex].optionA !== null}>The End.</p>
+						<button hidden={this.props.storyInfo[currentIndex].optionA !== null} data-path='reset-story' onClick={this.whereToGo.bind(this)}>Try for a different ending.</button>
+						<br />
+						<button hidden={this.props.storyInfo[currentIndex].optionA !== null}>Choose a different story.</button>
+					</div>
 				</div>
 			</div>
 		);

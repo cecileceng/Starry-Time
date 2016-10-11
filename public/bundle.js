@@ -32217,11 +32217,17 @@
 		}, {
 			key: 'whereToGo',
 			value: function whereToGo(e) {
-				console.log(this.props.whereAmI);
-				for (var k = 0; k < this.props.storyInfo.length; k++) {
-					if (this.props.storyInfo[k].position === this.props.whereAmI) {
-						var hereIAmNow = this.props.storyInfo[k][e.target.getAttribute('data-path')];
-						this.props.nextChapter(hereIAmNow);
+				var pathChoice = e.target.getAttribute('data-path');
+				if (pathChoice === 'reset-story') {
+					this.props.nextChapter('1A');
+				} else {
+					console.log(this.props.whereAmI);
+					for (var k = 0; k < this.props.storyInfo.length; k++) {
+						if (this.props.storyInfo[k].position === this.props.whereAmI) {
+							var hereIAmNow = this.props.storyInfo[k][pathChoice];
+							console.log(hereIAmNow);
+							this.props.nextChapter(hereIAmNow);
+						}
 					}
 				}
 				// 	this.props.nextChapter(e.target.getAttribute('data-path'))
@@ -32284,9 +32290,20 @@
 								this.props.storyInfo[currentIndex].optionB
 							),
 							_react2.default.createElement(
+								'p',
+								{ hidden: this.props.storyInfo[currentIndex].optionA !== null },
+								'The End.'
+							),
+							_react2.default.createElement(
+								'button',
+								{ hidden: this.props.storyInfo[currentIndex].optionA !== null, 'data-path': 'reset-story', onClick: this.whereToGo.bind(this) },
+								'Try for a different ending.'
+							),
+							_react2.default.createElement('br', null),
+							_react2.default.createElement(
 								'button',
 								{ hidden: this.props.storyInfo[currentIndex].optionA !== null },
-								'The End'
+								'Choose a different story.'
 							)
 						)
 					)

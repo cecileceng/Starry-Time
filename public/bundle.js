@@ -142,8 +142,8 @@
 			key: 'changeAnswer',
 			value: function changeAnswer(chapter, answerIndex, value) {
 				var answers = Object.assign({}, this.state.answers);
-				console.log(chapter + "|" + answerIndex + "|" + value);
-				console.log(answers);
+				// console.log(chapter + "|" + answerIndex + "|" + value); 
+				// console.log(answers); 
 				answers[chapter][answerIndex].value = value;
 				this.setState({ answers: answers });
 			}
@@ -32225,7 +32225,7 @@
 					for (var k = 0; k < this.props.storyInfo.length; k++) {
 						if (this.props.storyInfo[k].position === this.props.whereAmI) {
 							var hereIAmNow = this.props.storyInfo[k][pathChoice];
-							console.log(hereIAmNow);
+							// console.log(hereIAmNow);
 							this.props.nextChapter(hereIAmNow);
 						}
 					}
@@ -32250,7 +32250,7 @@
 				for (; i < len; i++) {
 					if (this.props.storyInfo[i].position === this.props.whereAmI) {
 						currentIndex = i;
-						console.log(i);
+						// console.log(i);
 						chapterText = this.props.storyInfo[i].chapterText;
 						// if(this.props.storyInfo[i].position==pos){
 						// 	storyInfo = this.props.storyInfo[i];
@@ -32264,7 +32264,7 @@
 				// var storyInfo = props.storyInfo[pos:position];
 				for (var a = 0; a < this.props.answers[this.props.whereAmI].length; a++) {
 					chapterText = this.replaceText(chapterText, this.props.answers[this.props.whereAmI][a].type, this.props.answers[this.props.whereAmI][a].value);
-					console.log(chapterText);
+					// console.log(chapterText);
 					//	console.log(this.props);
 					// console.log('CurrentChapter', {pos:pos, storyInfo:storyInfo}, props.storyInfo[pos], text);
 				}
@@ -32299,12 +32299,7 @@
 								{ hidden: this.props.storyInfo[currentIndex].optionA !== null, 'data-path': 'reset-story', onClick: this.whereToGo.bind(this) },
 								'Try for a different ending.'
 							),
-							_react2.default.createElement('br', null),
-							_react2.default.createElement(
-								'button',
-								{ hidden: this.props.storyInfo[currentIndex].optionA !== null },
-								'Choose a different story.'
-							)
+							_react2.default.createElement('br', null)
 						)
 					)
 				);

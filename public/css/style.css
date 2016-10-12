@@ -1,4 +1,5 @@
-.main-container {
+html body {
+	height: 100%;
 	background-image: url(../images/forest.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -68,12 +69,12 @@ h3 {
 	padding-top: 100px;
 }
 
-.story-block {
-
+.options {
+	padding: 15px;
 }
 
 #oppressed {
-	margin: 150px auto; 
+	margin: 125px auto; 
 	padding: 10px;
 }
 
@@ -94,6 +95,7 @@ h3 {
 .current-chapter p {
 	font-size: 48px;
 	text-align: center;
+	padding: 10px;
 }
 
 .left-side {
@@ -115,4 +117,8 @@ h3 {
 #iLikeBigButtonsAndICannotLie {
 	height:100px;
 	width:250px;
+	background-color: #ca6060;
+	border: none;
+	text-shadow: 2px 2px 4px #000000;
+	font-size: 20px;
 }

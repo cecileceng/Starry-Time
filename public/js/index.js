@@ -51,8 +51,8 @@ class App extends Component {
 	}
 	changeAnswer (chapter, answerIndex, value) {
 		var answers = Object.assign({}, this.state.answers);
-		console.log(chapter + "|" + answerIndex + "|" + value); 
-		console.log(answers); 
+		// console.log(chapter + "|" + answerIndex + "|" + value); 
+		// console.log(answers); 
 		answers[chapter][answerIndex].value = value;
 		this.setState({answers: answers});
 	}

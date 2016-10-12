@@ -16,7 +16,7 @@ class CurrentChapter extends Component {
 	 	for (var k = 0; k < this.props.storyInfo.length; k++) {
 	 		if (this.props.storyInfo[k].position === this.props.whereAmI) {
 	 			var hereIAmNow = this.props.storyInfo[k][pathChoice];
-	 			console.log(hereIAmNow);
+	 			// console.log(hereIAmNow);
 	 			this.props.nextChapter(hereIAmNow);
 	 		}
 	 	}
@@ -38,7 +38,7 @@ class CurrentChapter extends Component {
 		for(;i<len;i++){
 			if (this.props.storyInfo[i].position === this.props.whereAmI) {
 				currentIndex = i;
-				console.log(i);
+				// console.log(i);
 				chapterText = this.props.storyInfo[i].chapterText;
 			// if(this.props.storyInfo[i].position==pos){
 			// 	storyInfo = this.props.storyInfo[i];
@@ -52,7 +52,7 @@ class CurrentChapter extends Component {
 		// var storyInfo = props.storyInfo[pos:position];
 		for (var a = 0; a < this.props.answers[this.props.whereAmI].length; a++){ 
 			chapterText = this.replaceText(chapterText, this.props.answers[this.props.whereAmI][a].type, this.props.answers[this.props.whereAmI][a].value );
-		console.log(chapterText);
+		// console.log(chapterText);
 //	console.log(this.props);
 		// console.log('CurrentChapter', {pos:pos, storyInfo:storyInfo}, props.storyInfo[pos], text);
 	}
@@ -71,7 +71,7 @@ class CurrentChapter extends Component {
 						<p hidden={this.props.storyInfo[currentIndex].optionA !== null}>The End.</p>
 						<button hidden={this.props.storyInfo[currentIndex].optionA !== null} data-path='reset-story' onClick={this.whereToGo.bind(this)}>Try for a different ending.</button>
 						<br />
-						<button hidden={this.props.storyInfo[currentIndex].optionA !== null}>Choose a different story.</button>
+						{/*<button hidden={this.props.storyInfo[currentIndex].optionA !== null}>Choose a different story.</button>*/}
 					</div>
 				</div>
 			</div>
